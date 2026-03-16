@@ -1,0 +1,36 @@
+name: 'Bounty Verification Bot'
+description: 'Auto-verify bounty claims (stars, follows, wallet, articles)'
+author: 'OpenClaw Assistant'
+branding:
+  icon: 'check-circle'
+  color: 'green'
+
+inputs:
+  github-token:
+    description: 'GitHub token for API access'
+    required: true
+    default: ${{ github.token }}
+  rustchain-node-url:
+    description: 'RustChain node URL for wallet verification'
+    required: false
+    default: 'https://50.28.86.131'
+  follow-required:
+    description: 'Require following @Scottcjn'
+    required: false
+    default: 'true'
+  min-stars:
+    description: 'Minimum stars required'
+    required: false
+    default: '0'
+  rtc-per-star:
+    description: 'RTC reward per star'
+    required: false
+    default: '1.0'
+  follow-multiplier:
+    description: 'Multiplier if following (e.g., 1.5 = 50% bonus)'
+    required: false
+    default: '1.0'
+
+runs:
+  using: 'node20'
+  main: 'dist/index.js'
